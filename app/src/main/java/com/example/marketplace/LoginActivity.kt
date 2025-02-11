@@ -19,19 +19,29 @@ import java.io.IOException
 
 class LoginActivity : AppCompatActivity() {
 
+    companion object {
+        const val PREFS_NAME = "UserPrefs"
+        const val KEY_IS_LOGGED_IN = "isLoggedIn"
+        const val KEY_USER_EMAIL = "user_email"
+        const val KEY_USER_PHONE = "user_phone"
+        const val KEY_USER_NAME = "user_name"
+    }
+
     private lateinit var loginEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         loginEditText = findViewById(R.id.loginTextPrinter)
         passwordEditText = findViewById(R.id.paswrdTextPrinter)
         loginButton = findViewById(R.id.loginButton)
-
+        
+        
         sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
 
         // Проверяем, входил ли пользователь раньше
@@ -124,25 +134,31 @@ class LoginActivity : AppCompatActivity() {
 
                             // Проверяем, что массив не пустой
                             if (responseServerArray.length() > 0) {
-                                val firstObject = responseServerArray.getJSONObject(0)
+                                val userObject = responseServerArray.getJSONObject(0)
 
-                                // Проверяем наличие ключа "message"
-                                if (firstObject.has("message")) {
-                                    val message = firstObject.getString("message")
+                                // Проверяем наличие данных пользователя
+                                if (userObject.has("mail") && userObject.has("user_phoneNumber") && userObject.has("user_real_name")) {
+                                    // Получаем данные пользователя
+                                    val userEmail = userObject.getString("mail")
+                                    val userPhoneNumber = userObject.getString("user_phoneNumber")
+                                    val userRealName = userObject.getString("user_real_name")
 
+                                    // Сохраняем данные в SharedPreferences
+                                    sharedPreferences.edit().apply {
+                                        putBoolean(KEY_IS_LOGGED_IN, true)
+                                        putString(KEY_USER_EMAIL, userEmail)
+                                        putString(KEY_USER_PHONE, userPhoneNumber)
+                                        putString(KEY_USER_NAME, userRealName)
+                                        apply()
+                                    }
+
+                                    // Успешный логин
                                     runOnUiThread {
-                                        if (message == "good") {
-                                            // Успешный логин
-                                            sharedPreferences.edit().putBoolean("isLoggedIn", true).apply()
-                                            openMainScreen()
-                                        } else {
-                                            // Сообщение не "good" — показываем ошибку
-                                            showError("Неверный логин или пароль")
-                                        }
+                                        openMainScreen()
                                     }
                                 } else {
-                                    // Ключ "message" отсутствует
-                                    showError("Ошибка: некорректный ответ сервера")
+                                    // Данные пользователя отсутствуют
+                                    showError("Ошибка: некорректные данные пользователя")
                                 }
                             } else {
                                 // Массив "response_server" пустой
