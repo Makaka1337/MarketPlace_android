@@ -39,7 +39,8 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.material.v1110)
+    implementation(libs.okhttp)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
