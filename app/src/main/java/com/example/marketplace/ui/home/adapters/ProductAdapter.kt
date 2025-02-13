@@ -1,6 +1,6 @@
 package com.example.marketplace.ui.home.adapters
 
-import android.util.Log
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,13 +34,18 @@ class ProductAdapter(private var productList: List<Product>) :
                 binding.productOriginalPrice.visibility = View.GONE
             }
 
-            // Обработка нажатий на кнопку "В корзину"
+            // Обработка нажатий на кнопку "Заказать"
             binding.addToCartButton.setOnClickListener {
-                Log.d("ProductAdapter", "Товар добавлен в корзину: ${product.name}")
+                val context = binding.root.context
+                val intent = Intent(context, PaymentActivity::class.java).apply {
+                    putExtra("productName", product.name)
+                    putExtra("productPrice", (product.price - product.discount).toString())
+                    putExtra("productImage", product.image)
+                }
+                context.startActivity(intent)
             }
         }
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding = ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -51,7 +56,6 @@ class ProductAdapter(private var productList: List<Product>) :
         val product = productList[position]
         holder.bind(product)
     }
-
 
     override fun getItemCount() = productList.size
 

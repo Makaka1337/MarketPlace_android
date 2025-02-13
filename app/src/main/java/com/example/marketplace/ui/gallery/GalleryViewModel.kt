@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class GalleryViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "пусто:("
+        value = "пусто:(\nпотом будет:)"
     }
     val text: LiveData<String> = _text
 }

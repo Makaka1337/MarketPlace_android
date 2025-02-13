@@ -28,6 +28,11 @@
             android:name=".MainActivity"
             android:theme="@style/Theme.MarketPlace.NoActionBar">
         </activity>
+
+        <activity
+            android:name=".ui.home.adapters.PaymentActivity"
+            android:theme="@style/Theme.MarketPlace.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
