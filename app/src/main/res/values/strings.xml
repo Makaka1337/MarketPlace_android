@@ -9,4 +9,5 @@
 
     <string name="menu_home">Каталог</string>
     <string name="menu_gallery">Корзина</string>
+    <string name="cart_icon_description_">В корзину</string>
 </resources>

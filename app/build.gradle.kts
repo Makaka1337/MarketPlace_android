@@ -36,11 +36,15 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    buildToolsVersion = "35.0.0"
 }
 
 dependencies {
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
     implementation(libs.material.v1110)
     implementation(libs.okhttp)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
