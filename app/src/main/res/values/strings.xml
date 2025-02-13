@@ -11,8 +11,9 @@
     <string name="menu_gallery">Корзина</string>
     <string name="cart_icon_description">В корзину</string>
     <string name="cart_icon_description_">Заказать</string>
+
     <string name="login_title">ВХОД</string>
-    <string name="login_label">Номер телефона или почта9035853408</string>
+    <string name="login_label">Номер телефона или почта</string>
     <string name="login_pswrd_label">Введите пароль</string>
     <string name="login_main_button">ВОЙТИ</string>
 </resources>
