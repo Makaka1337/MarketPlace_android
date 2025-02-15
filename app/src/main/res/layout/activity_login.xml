@@ -30,7 +30,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleText"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintVertical_bias="0.10"/>
 
     <EditText
@@ -42,7 +41,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginTextPrinter"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintVertical_bias="0.10"/>
 
     <Button
@@ -51,10 +49,20 @@
         android:layout_height="wrap_content"
         android:text="@string/login_main_button"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/paswrdTextPrinter"
-        app:layout_constraintVertical_bias="0.20"/>
+        app:layout_constraintVertical_bias="0.10"/>
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/register_button"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginButton"
+        app:layout_constraintVertical_bias="0.10"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

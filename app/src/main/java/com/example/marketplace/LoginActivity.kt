@@ -30,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
+    private lateinit var registerButton: Button
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +41,7 @@ class LoginActivity : AppCompatActivity() {
         loginEditText = findViewById(R.id.loginTextPrinter)
         passwordEditText = findViewById(R.id.paswrdTextPrinter)
         loginButton = findViewById(R.id.loginButton)
+        registerButton = findViewById(R.id.registerButton)
         
         
         sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
@@ -48,6 +50,13 @@ class LoginActivity : AppCompatActivity() {
         if (sharedPreferences.getBoolean("isLoggedIn", false)) {
             openMainScreen()
         }
+
+        registerButton.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
 
         loginButton.setOnClickListener {
             val login = loginEditText.text.toString()
